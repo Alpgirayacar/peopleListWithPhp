@@ -10,6 +10,8 @@
 
 </head>
 <body>
+  
+  
 <nav class="navbar navbar-expand-sm bg-light">
 
 <div class="container-fluid">
@@ -45,9 +47,7 @@
       }
       
       echo "<br/>";
-      echo '<div class="alert alert-success">
-      <strong>Success!</strong> This alert box could indicate a successful or positive action.
-    </div>';
+    
 
       $sqlselect = "SELECT id, firstname, surname , useremail , birthdate FROM people";
       $result = $conn->query($sqlselect);
@@ -55,16 +55,18 @@
       if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
+
           echo ' <div class="card">
           <div class="card-header">'.$row["firstname"].'</div>
-          <div class="card-body">'.$row["useremail"] .'</div> 
-          <div class="card-footer">'.$row["birthdate"].'</div>
+          <div class="card-body">'.$row["useremail"] .'<br/>'.$row["birthdate"].'</div> 
+          <div class="card-footer"><a class="btn btn-outline-danger" href="/webform/detail.php?userid='.$row["id"].'&username='.$row["firstname"].'">Sil</a>
+         
+          </div>
         </div>
         <br/>
         ';
   
-        
-          
+         
         }
       } else {
         echo "0 results";
@@ -73,10 +75,12 @@
 
 
       $conn->close();
-          
+      
 
 
     ?>
+    
+
   </div>
 
     
